@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "postinstall": "prisma skills sync || exit 0"
+    "postinstall": "prisma generate && (prisma skills sync || exit 0)"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",
