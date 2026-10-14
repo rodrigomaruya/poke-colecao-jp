@@ -49,7 +49,7 @@ export async function forgotPassword(email: string) {
     },
   });
 
-  const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL}/reset-password?token=${token}`;
+  const resetUrl = `${process.env.APP_URL}/reset-password?token=${token}`;
 
   // Aqui vamos enviar o email
   try {
