@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+  
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  sessions Session[]
+  collection Collection[]
+  passwordResetTokens PasswordResetToken[]
+
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+
+}
+
+model CardSet {
+  id         String    // ex: "swsh3"
+  language   String    @default("pt")// "en" | "pt" | "ja"
+  name       String
+  logo       String?
+  symbol     String?
+  releasedAt DateTime?
+  cardCountOfficial Int @default(0)
+  cardCountTotal    Int @default(0)
+  cards      Card[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([id, language])
+}
+
+model Card {
+  id        String    // ex: "swsh3-136"
+  language  String
+  localId   String
+  name      String
+  image     String?
+  rarity    String?
+  setId     String
+
+  category   String?
+  hp         Int?
+  types      String[]
+  stage      String?
+  evolveFrom String?
+  detailsAt  DateTime?
+
+  // preços (atualizados a cada 24h)
+  pricing   Json?
+  pricingAt DateTime?
+
+  set         CardSet      @relation(fields: [setId, language], references: [id, language])
+  collections Collection[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([id, language])
+  @@index([setId, language])
+}
+
+model Collection {
+  id           String @id @default(cuid())
+  userId       String
+  cardId       String
+  cardLanguage String
+  quantity     Int    @default(1)
+
+  purchasePrice  Decimal? @db.Decimal(12, 2)
+  currentPrice  Int?
+  currency      String @default("JPY")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  card Card @relation(fields: [cardId, cardLanguage], references: [id, language])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, cardId, cardLanguage])
+  @@index([userId])
+}
