@@ -2,7 +2,7 @@
 
 Uma aplicação web para explorar cartas Pokémon TCG, consultar expansões e descobrir cartas em diferentes idiomas, com foco especial no mercado japonês.
 
-🔗 **Acesse a aplicação:** [Poke Coleção JP](https://placeholder.example)
+🔗 **Acesse a aplicação:** [Poke Coleção JP](https://poke-colecao-jp.vercel.app/)
 
 ## 📖 Sobre o projeto
 
