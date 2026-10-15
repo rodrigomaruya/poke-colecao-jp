@@ -1,6 +1,7 @@
 import { LogOutIcon, UserCircle } from "lucide-react";
 import Link from "next/link";
 import { logout } from "@/actions-login/logout";
+import { CollectionSubmitButton } from "@/app/dashboard/components/collection-submit-button";
 
 const links = [
   { href: "/", label: "Início" },
@@ -11,10 +12,6 @@ const links = [
 ];
 
 export function NavDesktop({ isLoggedIn }: { isLoggedIn: boolean }) {
-  async function handleLogout() {
-    await logout();
-  }
-
   return (
     <nav className="hidden items-center gap-6 md:flex">
       {links.map((link) => (
@@ -33,9 +30,20 @@ export function NavDesktop({ isLoggedIn }: { isLoggedIn: boolean }) {
             <Link href={"/dashboard/colecao"}>
               <UserCircle className="text-blue-500" size={30} />
             </Link>
-            <button onClick={() => handleLogout()}>
-              <LogOutIcon className="text-slate-500" />
-            </button>
+            <form
+              action={async () => {
+                await logout();
+              }}
+            >
+              <CollectionSubmitButton
+                type="submit"
+                aria-label="Sair"
+                title="Sair"
+                className="inline-flex size-9 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 disabled:cursor-wait disabled:opacity-60"
+              >
+                <LogOutIcon className="text-slate-500" />
+              </CollectionSubmitButton>
+            </form>
           </div>
         ) : (
           <>

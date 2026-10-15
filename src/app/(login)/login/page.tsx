@@ -18,12 +18,12 @@ export default function Login() {
           >
             Não possui uma conta? Cadastre-se
           </Link>
-          <Link
+          {/* <Link
             href="/forgot-password"
             className="p-2 text-blue-300 hover:text-blue-500"
           >
             Esqueci minha senha
-          </Link>
+          </Link> */}
         </div>
       </div>
     </main>

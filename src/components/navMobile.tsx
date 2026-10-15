@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Hamburger, LogOutIcon, Menu, UserCircle, X } from "lucide-react";
 import { useState } from "react";
 import { logout } from "@/actions-login/logout";
+import { CollectionSubmitButton } from "@/app/dashboard/components/collection-submit-button";
 
 const links = [
   { href: "/", label: "Início" },
@@ -16,9 +17,6 @@ const links = [
 export function NavMobile({ isLoggedIn }: { isLoggedIn: boolean }) {
   const [open, setOpen] = useState(false);
 
-  async function handleLogout() {
-    await logout();
-  }
   return (
     <div className="md:hidden">
       <button
@@ -48,9 +46,20 @@ export function NavMobile({ isLoggedIn }: { isLoggedIn: boolean }) {
                 <Link href={"/dashboard/colecao"}>
                   <UserCircle className="text-blue-500" size={30} />
                 </Link>
-                <button onClick={() => handleLogout()}>
-                  <LogOutIcon className="text-slate-500" />
-                </button>
+                <form
+                  action={async () => {
+                    await logout();
+                  }}
+                >
+                  <CollectionSubmitButton
+                    type="submit"
+                    aria-label="Sair"
+                    title="Sair"
+                    className="inline-flex size-9 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 disabled:cursor-wait disabled:opacity-60"
+                  >
+                    <LogOutIcon className="text-slate-500" />
+                  </CollectionSubmitButton>
+                </form>
               </div>
             ) : (
               <Link
