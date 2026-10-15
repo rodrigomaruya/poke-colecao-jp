@@ -10,6 +10,7 @@ import {
   Settings,
   LogOut,
   CircleDollarSign,
+  Smartphone,
 } from "lucide-react";
 import Image from "next/image";
 import { logout } from "@/actions-login/logout";
@@ -35,6 +36,11 @@ const menuItems = [
     label: "Explorar",
     href: "/dashboard/explorar",
     icon: Search,
+  },
+  {
+    label: "Instalar app",
+    href: "/instalar",
+    icon: Smartphone,
   },
 ];
 

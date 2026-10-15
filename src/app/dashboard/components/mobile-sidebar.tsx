@@ -13,6 +13,7 @@ import {
   Menu,
   Search,
   Settings,
+  Smartphone,
   X,
 } from "lucide-react";
 
@@ -21,6 +22,7 @@ const menuItems = [
   { label: "Minha coleção", href: "/dashboard/colecao", icon: Library },
   { label: "Wishlist", href: "/dashboard/wishlist", icon: Heart },
   { label: "Explorar", href: "/dashboard/explorar", icon: Search },
+  { label: "Instalar app", href: "/instalar", icon: Smartphone },
 ];
 
 export function MobileSidebar() {

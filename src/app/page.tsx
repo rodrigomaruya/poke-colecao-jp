@@ -1,6 +1,6 @@
 import { Features } from "@/components/features";
 import { Menu } from "@/components/menu";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Smartphone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { getSession } from "@/lib/session";
@@ -37,6 +37,13 @@ export default async function Home() {
                   Saiba mais <ArrowRight />
                 </Link>
               </div>
+              <Link
+                href="/instalar"
+                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-900 hover:underline"
+              >
+                <Smartphone aria-hidden="true" className="size-4" />
+                Adicione à tela inicial do iPhone
+              </Link>
             </section>
             <section className="">
               <Image

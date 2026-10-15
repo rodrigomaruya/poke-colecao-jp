@@ -10,6 +10,7 @@ const links = [
   { href: "/explorar", label: "Explorar" },
   { href: "/dashboard/colecao", label: "Minha coleção" },
   { href: "/wishlist", label: "Wishlist" },
+  { href: "/instalar", label: "Instalar app" },
 ];
 
 export function NavMobile({ isLoggedIn }: { isLoggedIn: boolean }) {
