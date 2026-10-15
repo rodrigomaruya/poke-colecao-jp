@@ -3,17 +3,16 @@
 import { register } from "@/actions-login/register";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { CollectionSubmitButton } from "@/app/dashboard/components/collection-submit-button";
 
 export default function RegisterForm() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   async function handleSubmit(formData: FormData) {
     setError("");
     setSuccess("");
-    setLoading(true);
     const name = String(formData.get("name"));
     const email = String(formData.get("email"));
     const password = String(formData.get("password"));
@@ -21,13 +20,11 @@ export default function RegisterForm() {
 
     if (password.length < 6) {
       setError("A senha deve ter pelo menos 6 caracteres.");
-      setLoading(false);
       return;
     }
 
     if (password !== passwordConfirmation) {
       setError("As senhas precisam ser iguais.");
-      setLoading(false);
       return;
     }
 
@@ -49,8 +46,6 @@ export default function RegisterForm() {
       }
     } catch (error) {
       setSuccess("Ops! Ocorreu um erro ao criar a conta.");
-    } finally {
-      setLoading(false);
     }
   }
 
@@ -118,16 +113,13 @@ export default function RegisterForm() {
         <p className="text-sm font-medium text-green-800">{success}</p>
       )}
 
-      <button
+      <CollectionSubmitButton
         type="submit"
-        disabled={loading}
-        className={`rounded-md  p-2 font-medium transition hover:bg-blue-100 ${loading ? "bg-blue-200" : "bg-blue-50"}`}
+        pendingText="Criando conta..."
+        className="rounded-md bg-blue-50 p-2 font-medium transition hover:bg-blue-100 disabled:cursor-wait disabled:opacity-70"
       >
-        {loading && (
-          <span className="size-4 animate-spin rounded-full border-2 border-blue-700 border-t-transparent" />
-        )}
-        {loading ? "Entrando..." : "Criar conta"}
-      </button>
+        Criar conta
+      </CollectionSubmitButton>
     </form>
   );
 }

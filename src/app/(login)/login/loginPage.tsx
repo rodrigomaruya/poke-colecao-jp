@@ -3,17 +3,15 @@
 import { login } from "@/actions-login/login";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { CollectionSubmitButton } from "@/app/dashboard/components/collection-submit-button";
 export function LoginPage() {
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
   async function handleLogin(formData: FormData) {
     const email = String(formData.get("email"));
     const password = String(formData.get("password"));
-    setLoading(true);
     setError("");
     if (!email || !password) {
-      setLoading(false);
       return alert("Digite todos os campos");
     }
     const data = {
@@ -30,8 +28,6 @@ export function LoginPage() {
       }
     } catch (error) {
       setError("Error ao logar");
-    } finally {
-      setLoading(false);
     }
   }
   return (
@@ -65,16 +61,13 @@ export function LoginPage() {
         />
       </div>
       {error && <p className="text-red-600">{error}</p>}
-      <button
+      <CollectionSubmitButton
         type="submit"
-        disabled={loading}
-        className={`rounded-md bg-blue-200 p-2 font-medium transition hover:bg-blue-50 ${loading ? "bg-blue-200" : "bg-blue-50"}`}
+        pendingText="Entrando..."
+        className="rounded-md bg-blue-50 p-2 font-medium transition hover:bg-blue-100 disabled:cursor-wait disabled:opacity-70"
       >
-        {loading && (
-          <span className="size-4 animate-spin rounded-full border-2 border-blue-700 border-t-transparent" />
-        )}
-        {loading ? "Entrando..." : "Entrar"}
-      </button>
+        Entrar
+      </CollectionSubmitButton>
     </form>
   );
 }

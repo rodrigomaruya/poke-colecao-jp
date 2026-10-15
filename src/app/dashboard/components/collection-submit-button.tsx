@@ -9,17 +9,19 @@ type CollectionSubmitButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 export function CollectionSubmitButton({
   children,
   disabled,
+  pendingText,
   ...props
-}: CollectionSubmitButtonProps) {
+}: CollectionSubmitButtonProps & { pendingText?: string }) {
   const { pending } = useFormStatus();
 
   return (
     <button {...props} disabled={disabled || pending} aria-busy={pending}>
-      {pending ? (
-        <LoaderCircle aria-hidden="true" className="size-4 animate-spin" />
-      ) : (
-        children
-      )}
+      <span className="inline-flex items-center justify-center gap-2">
+        {pending && (
+          <LoaderCircle aria-hidden="true" className="size-4 animate-spin" />
+        )}
+        {pending ? pendingText : children}
+      </span>
     </button>
   );
 }
