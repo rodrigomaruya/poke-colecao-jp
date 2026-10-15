@@ -9,6 +9,7 @@ import {
 import { getCurrentUser } from "@/lib/auth";
 import { getSetCardCollection } from "@/lib/query/collection";
 import { getSetWithCache } from "@/lib/query/sets";
+import { CollectionSubmitButton } from "@/app/dashboard/components/collection-submit-button";
 
 type Language = "en" | "pt" | "ja";
 
@@ -164,25 +165,25 @@ export default async function MyCollectionPage({
                           <input type="hidden" name="cardId" value={card.id} />
                           <input type="hidden" name="lang" value={language} />
                           <input type="hidden" name="delta" value="-1" />
-                          <button
+                          <CollectionSubmitButton
                             type="submit"
                             aria-label={`Remover uma cópia de ${card.name}`}
                             className="inline-flex size-8 items-center justify-center rounded-lg border border-slate-200 text-slate-600 transition hover:border-red-200 hover:bg-red-50 hover:text-red-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                           >
                             <Minus aria-hidden="true" className="size-4" />
-                          </button>
+                          </CollectionSubmitButton>
                         </form>
                       )}
                       <form action={addSetCardToCollectionAction}>
                         <input type="hidden" name="cardId" value={card.id} />
                         <input type="hidden" name="lang" value={language} />
-                        <button
+                        <CollectionSubmitButton
                           type="submit"
                           aria-label={`Adicionar uma cópia de ${card.name}`}
                           className="inline-flex size-8 items-center justify-center rounded-lg border border-blue-200 text-blue-700 transition hover:bg-blue-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                         >
                           <Plus aria-hidden="true" className="size-4" />
-                        </button>
+                        </CollectionSubmitButton>
                       </form>
                     </div>
                   </div>

@@ -123,7 +123,10 @@ export default function RegisterForm() {
         disabled={loading}
         className={`rounded-md  p-2 font-medium transition hover:bg-blue-100 ${loading ? "bg-blue-200" : "bg-blue-50"}`}
       >
-        {loading ? "Carregando..." : "Criar conta"}
+        {loading && (
+          <span className="size-4 animate-spin rounded-full border-2 border-blue-700 border-t-transparent" />
+        )}
+        {loading ? "Entrando..." : "Criar conta"}
       </button>
     </form>
   );

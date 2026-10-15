@@ -5,6 +5,7 @@ import {
   BadgeInfo,
   Coins,
   Library,
+  LoaderCircle,
   Shield,
   Sparkles,
   Tag,
@@ -184,9 +185,16 @@ export function PokemonCardDetails({ card, lang }: PokemonCardDetailsProps) {
                 <button
                   type="button"
                   disabled={isAdding}
-                  className="flex-1 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+                  aria-busy={isAdding}
+                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
                   onClick={handleAddCollection}
                 >
+                  {isAdding && (
+                    <LoaderCircle
+                      aria-hidden="true"
+                      className="size-4 animate-spin"
+                    />
+                  )}
                   {isAdding ? "Adicionando..." : "Adicionar à coleção"}
                 </button>
               </div>

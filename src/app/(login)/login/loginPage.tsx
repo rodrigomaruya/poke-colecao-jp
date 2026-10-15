@@ -68,9 +68,12 @@ export function LoginPage() {
       <button
         type="submit"
         disabled={loading}
-        className="rounded-md bg-blue-50 p-2 font-medium transition hover:bg-blue-100"
+        className={`rounded-md bg-blue-200 p-2 font-medium transition hover:bg-blue-50 ${loading ? "bg-blue-200" : "bg-blue-50"}`}
       >
-        {loading ? "Carregando..." : "Entrar"}
+        {loading && (
+          <span className="size-4 animate-spin rounded-full border-2 border-blue-700 border-t-transparent" />
+        )}
+        {loading ? "Entrando..." : "Entrar"}
       </button>
     </form>
   );

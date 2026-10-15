@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight, Clock3, Minus, Plus } from "lucide-react";
 import type { CollectionItem } from "@/action-get-collection/actionGetCollection";
 import { changeQuantityAction } from "@/action-save-collection/addToCollectionAction";
+import { CollectionSubmitButton } from "@/app/dashboard/components/collection-submit-button";
 
 interface LastProps {
   items: CollectionItem[];
@@ -110,14 +111,14 @@ export function LastPage({ items }: LastProps) {
                       value={item.cardLanguage}
                     />
                     <input type="hidden" name="delta" value="1" />
-                    <button
+                    <CollectionSubmitButton
                       type="submit"
                       aria-label={`Adicionar uma cópia de ${item.name}`}
                       title="Adicionar uma cópia"
                       className="inline-flex size-9 items-center justify-center rounded-lg border border-blue-200 bg-white text-blue-700 transition hover:bg-blue-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                     >
                       <Plus aria-hidden="true" className="size-4" />
-                    </button>
+                    </CollectionSubmitButton>
                   </form>
 
                   <form action={changeQuantityAction}>
@@ -128,7 +129,7 @@ export function LastPage({ items }: LastProps) {
                       value={item.cardLanguage}
                     />
                     <input type="hidden" name="delta" value="-1" />
-                    <button
+                    <CollectionSubmitButton
                       type="submit"
                       aria-label={`Remover uma cópia de ${item.name}`}
                       title={
@@ -139,7 +140,7 @@ export function LastPage({ items }: LastProps) {
                       className="inline-flex size-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-red-200 hover:bg-red-50 hover:text-red-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
                     >
                       <Minus aria-hidden="true" className="size-4" />
-                    </button>
+                    </CollectionSubmitButton>
                   </form>
                 </div>
               </div>
