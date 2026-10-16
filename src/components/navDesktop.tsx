@@ -5,9 +5,9 @@ import { CollectionSubmitButton } from "@/app/dashboard/components/collection-su
 
 const links = [
   { href: "/", label: "Início" },
-  { href: "/explorar", label: "Explorar" },
+  { href: "/dashboard/explorar", label: "Explorar" },
   { href: "/dashboard/colecao", label: "Minha coleção" },
-  { href: "/wishlist", label: "Wishlist" },
+  { href: "/dashboard/wishlist", label: "Wishlist" },
   { href: "/instalar", label: "Instalar app" },
 ];
 
